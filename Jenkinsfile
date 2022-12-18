@@ -60,7 +60,7 @@ pipeline {
         stage('Deploy Image') {
           steps{
             script {
-              docker.withRegistry([ '', credentialsId: "dockerhub", url:"" ]) {
+              docker.withRegistry( '', registryCredential ) {
                 dockerImage.push("$BUILD_NUMBER")
                 dockerImage.push('latest')
               }
